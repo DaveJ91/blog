@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% load static %}
+
+<!-- {% block body_class %}template-blogindexpage{% endblock %} -->
+{% block extra_css %}
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Akronim|Fredericka+the+Great|Montserrat&display=swap');
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: grayscale;
+    
+  }
+
+  .hidden.menu {
+    display: none;
+  }
+
+  .masthead.segment {
+    min-height: 600px;
+    padding: 1em 0em;
+  }
+
+  .masthead .logo.item img {
+    margin-right: 2em;
+  }
+
+  .masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+  }
+
+  .masthead .header.item {
+    font-family: 'Montserrat';
+    margin: 0px -50px;
+  }
+
+  .masthead h1.ui.header {
+    margin-top: 2em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+    color: white;
+    font-family: 'Montserrat';
+  }
+
+  .masthead h2.ui.header {
+    font-size: 1.7em;
+    font-weight: normal;
+    color: white;
+    font-family: 'Montserrat';
+  }
+
+  .ui.vertical.stripe {
+    padding: 8em 0em;
+  }
+
+  .ui.vertical.stripe h3 {
+    font-size: 2em;
+  }
+
+  .ui.vertical.stripe .button + h3,
+  .ui.vertical.stripe p + h3 {
+    margin-top: 3em;
+  }
+
+  .ui.vertical.stripe .floated.image {
+    clear: both;
+  }
+
+  .ui.vertical.stripe p {
+    font-size: 1.33em;
+  }
+
+  .ui.vertical.stripe .horizontal.divider {
+    margin: 3em 0em;
+  }
+
+  .quote.stripe.segment {
+    padding: 0em;
+  }
+
+  .quote.stripe.segment .grid .column {
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+
+  .footer.segment {
+    padding: 5em 0em;
+  }
+
+  .secondary.pointing.menu .toc.item {
+    display: none;
+  }
+
+  .secondary.pointing.menu {
+    border: none;
+    
+  }
+
+ 
+  @media only screen and (max-width: 700px) {
+   
+
+  
+
+    .masthead.segment {
+      min-height: 400px;
+      padding: 0px;
+    }
+
+    .masthead h1.ui.header {
+      font-size: 2em;
+      margin-top: 1.5em;
+     
+    }
+
+    .masthead h2 {
+      margin-top: 0.5em;
+      font-size: 1em;
+      
+    }
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+<!-- Page Contents -->
+<div class="pusher">
+  {% image self.banner_image fill-2000x600-c40 as img %}
+  <div class="ui vertical masthead center aligned segment" style="background-image:linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ),url({{img.url}}); background-repeat: no-repeat; ">
+
+    <!-- Menu -->
+    <div class="ui container" >
+      <div class="ui  large secondary inverted pointing menu" >
+        <div class="header item">
+          DAVID O'MEARA
+        </div>
+      
+        <a class="active item">Home</a>
+        <a class="item">Walking</a>
+        <a class="item">Cycling</a>
+        
+       
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="ui text container">
+      <h1 class="ui header">
+        {{ self.title }}
+      </h1>
+      <h2 class="ui header">{{ self.banner_subtitle}}</h2>
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+
+  <div class="ui stackable grid container">
+    <div class="row">
+      <div class="ten wide column">
+        <div class="ui cards">
+        
+          {% for post in page.get_children %}
+          <!-- <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+          {{ post.specific.intro }}
+          {{ post.specific.body|richtext }} -->
+          <div class="ui card">
+            {% image post.specific.cover fill-200x200 as cover %}
+            <div class="image">
+              <img src="{{cover.url}}">
+            </div>
+            <div class="content">
+              <a class="header">{{post.title}}</a>
+              <div class="meta">
+                <span class="date">{{post.specific.date}}</span>
+              </div>
+              <div class="description">
+                {{post.specific.start}} to {{post.specific.end}}
+              </div>
+            </div>
+            <div class="extra content">
+              <a>
+                <i class="map signs icon"></i>
+                {{post.specific.km_walked}} km walked
+              </a>
+            </div>
+          </div>
+
+          {% endfor %}
+  
+
+        
+
+
+
+        </div>
+      </div>
+      <div class="six wide right floated column">
+       
+        {% image self.route_map fill-570x640 as map %}
+        <img src="{{map.url}}" class="ui large bordered rounded image">
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">We Help Companies and Companions</h3>
+          <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
+          <h3 class="ui header">We Make Bananas That Can Dance</h3>
+          <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+        </div>
+        <div class="six wide right floated column">
+        
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button">Check Them Out</a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+  <!-- Bootstrap core JavaScript -->
+
+{% endblock %}

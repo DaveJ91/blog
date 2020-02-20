@@ -133,24 +133,20 @@ class FishermanGallery(Orderable):
 
 # Index Page for Serra Tramuntana
 class TramuntanaIndexPage(Page):
-    template = 'blog/walking/portugal/fishermansTrail/index.html'
+    template = 'blog/walking/spain/serraTramuntana/index.html'
 
-    banner_image = models.ForeignKey(
-        'wagtailimages.image',
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    banner_image = models.ForeignKey('wagtailimages.image',null=True,blank=False,on_delete=models.SET_NULL,related_name='+')
     banner_subtitle = models.CharField(max_length=200)
     dates = models.CharField(max_length=200)
     content = RichTextField(blank=True)
+    route_map = models.ForeignKey('wagtailimages.image',null=True,blank=False,on_delete=models.SET_NULL,related_name='+')
 
     content_panels = Page.content_panels + [
         ImageChooserPanel('banner_image'),
         FieldPanel('banner_subtitle'),
         FieldPanel('dates'),
         FieldPanel('content'),
+        ImageChooserPanel('route_map'),
     ]
 
 
