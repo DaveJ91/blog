@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/semantic.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
 
         {% block extra_css %}
@@ -31,6 +32,8 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/semantic.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
 
         {% block extra_js %}
