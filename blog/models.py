@@ -54,3 +54,21 @@ class WalkingIndexPage(Page):
         FieldPanel('content'),
     ]
 
+
+
+# Index Page for Fishermans Trail
+
+# Blog Page for Fishermans Trail
+
+# Index Page for Cycling Africa
+
+# Blog Page for Cycling Afric
+
+# Index Page for Serra Tramuntana
+
+# Inde
+
+# Blog Page for Beara Way
+
+
+
